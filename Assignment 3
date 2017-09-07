@@ -1,0 +1,38 @@
+35)
+#include <iostream>
+
+int main()
+{
+	for (int i = 1; i > 5; i++)
+	{
+		int x;
+		std::cout << "Enter the x value:\n";
+		std::cin >> x;
+
+		if ((x < 5) && (2 * x < 10.7) || sqrt(5 * x) > 5.1)
+		{
+			std::cout << x;
+		}
+	}
+}
+Answers: 1, 2.4, 7.2, 5.3
+
+37) if not((Value1 < Value2) or odd(Number))
+or ( not((Value1 < Value2) and odd(Number)) then
+statement 1
+else
+statement 2
+end if
+
+if not (Value 1 < Value2) then statement1 else statement2 end if
+
+38) No this program doesn't do its intended goal because C will be true in certain cases
+where statement 2 runs.
+
+61) Percival is a truth teller because it would be a contradiction for him to claim that there is only one liar 
+and be one to because he would be telling the truth and so Llewellyn is the liar
+
+62) Both Mereduth and Merlin are truth tellers
+
+63)Both of them are truth tellers
+64)THey are both liars
