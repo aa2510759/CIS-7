@@ -1,0 +1,37 @@
+Show that p->q and q' -> p' are logically equivalent without using truth tables or a "contrapositive"
+law (don't assume they are true)
+
+p->q <=> q'->p'
+p'v q <=> q'->p' implication
+q v p' <=> q'->p' associative
+(q v p')' <=> q'->p' negation
+q' v p <=> q'->p' double negagtion
+q'->p'<=> q'->p' implication
+
+Show that (p->r) ^ (q->r) <=> (p v q) -> r
+
+(p->r) ^ (q->r) <=> (p v q) -> r
+p->r^q v p->r^r <=> (p v q) -> r distributive
+p->r^q v p->r <=> (p v q) -> r identity
+p->(r ^ q v r)  <=> (p v q) -> r 
+p->(q v r)<=> (p v q) -> r absorption
+(p v q) -> r <=> (p v q) -> r
+
+
+Come up with 2 more questions like the ones above. 
+Incorporate the logic laws we discussed in class.
+Your questions will be used in the next class' lab
+
+
+1) Show that p ^ (q v r) -> r ^ r' <=> p -> F
+
+p ^ (q v r) -> r ^ r' <=> p -> F
+p -> r ^r' <=> p -> F absorption
+p -> F <=>  p -> F contradiction
+
+2) Show that (p v q)' ^ p -> q <=> P' ^ q' ^ p' v q
+
+(p v q)' ^ p -> q <=> P' ^ q' ^ p' v q
+P' ^ q' ^ p -> q <=> P' ^ q' ^ p' v q de morgans
+P' ^ q' ^ p -> q <=> P' ^ q' ^ p' v q implication
+
