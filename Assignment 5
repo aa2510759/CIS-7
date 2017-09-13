@@ -9,17 +9,20 @@ Answer practice Question 18:
     E(x,y) = x eats y
     
     a) All lions are predators. 
-      (∀x)(L(x)) -> P(x) 
+      ∀x)(L(x)) ->P(x)
       
     b) Some lions roar.
-    
+    (Ǝx)(L(x) ^ R(x)) 
     
     c) Only lions roar.
-    
+    (∀x)(L(x)) ^ R(x))
     
     d) Some lions eat all zebras.
-    
+    (Ǝx)(L(x)->(∀y)(Z(y))->E(x,y))
     
     e) All lions eat all zebras.
+    (∀x)(L(x)->(Ǝy)(Z(y))->E(x,y))
     
-25) 
+25) a) John is handsome and Kathy loves John.
+    b) All men are handsome.
+    c) 
