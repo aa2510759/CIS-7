@@ -1,0 +1,25 @@
+Answer practice Question 18:
+1.3 Review Question 25
+1.3 Review Question 34
+
+18) L(x) = is a lion
+    R(x) = roars
+    P(x) = is a predator
+    Z(x) = is a zebra
+    E(x,y) = x eats y
+    
+    a) All lions are predators. 
+      (∀x)(L(x)) -> P(x) 
+      
+    b) Some lions roar.
+    
+    
+    c) Only lions roar.
+    
+    
+    d) Some lions eat all zebras.
+    
+    
+    e) All lions eat all zebras.
+    
+25) 
