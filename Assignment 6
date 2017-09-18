@@ -1,0 +1,48 @@
+// Andres Arevalo
+// 9/18/17
+// CIS-7
+
+#include <iostream>
+#include <string>
+#include <cctype>
+#include <algorithm>
+
+int main()
+{
+	int userInt;
+	bool valid = false;
+
+	std::string userString;
+	while (!valid)
+	{
+
+		std::cout << "Enter an integer value: \n"
+		<< "(Enter 'q' to exit)\n";
+		std::getline(std::cin, userString);
+
+		userInt = atoi(userString.c_str()); // string to int
+
+		if (userString == "q")
+		{
+	
+			std::cout << "Exiting... \n";
+			valid = true;
+		}
+		else if (std::all_of(userString.begin(), userString.end(), ::isdigit)) // checks to see if all chars are digits
+		{
+			std::cout << "You entered: " << userInt << std::endl;
+			if (userInt % 2 == 0)
+				std::cout << userInt << " is even.\n";
+			else
+				std::cout << userInt << " is odd.\n";
+		}
+		else
+		{
+			std::cout << "Error, invalid input.\n";
+		}
+	}
+
+	return 0;
+}
+
+
