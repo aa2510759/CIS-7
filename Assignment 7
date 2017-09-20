@@ -1,0 +1,53 @@
+- [ ]  Prove:  If n = 25, 100, or 169, then n is a perfect square and is the sum of two perfect squares.  
+       Indicate which method of proof you used.
+        
+        sqrt(n) = perfect square
+        if n = integer
+        
+        given n = 25   given n = 100   given n = 169
+        sqrt(25) = 5    sqrt(100) = 10  sqrt(169) = 13
+    
+       
+  
+- [ ]  Prove:  The sum of two odd integers is even. 
+       Hint: By definition, even integers can be expressed as 2n, thus odd integers can be expressed as 2n + 1	
+       
+       given even = 2n and odd = 2n + 1
+       
+       if n = 1
+       (2(n)+ 1) + (2(n)+ 1) = sum of odd integers
+       then (2(1)+ 1) + (2(1)+ 1)
+       sum of odd integers = 6
+       sum of odd integers is even
+       
+       
+       
+- [ ]  Prove:  The sum of an even integer and it's square is even
+
+      given even integers can be expressed as 2n
+      
+      if n = 1
+      2n + 2n = sum of even integers
+      2(1) + 2(1) = 4
+      sum of even integer is even
+      
+      if n = 1
+      (2(n))^2 = even integer squared
+      (2(1))^2 = 4
+      even integer squared is even
+      
+      
+- [ ]  Prove by Contradiction: If n squared is odd, then n is odd
+      
+      if n squared is not odd, then n is not odd
+      
+      if n = 2
+      
+      (2(n) + 1)^2 = n squared is not odd
+      (2(2) + 1)^2 = 25
+      
+      n is odd but n squared is not odd 
+      Therefore if n squared is odd then n is odd
+      
+      
+      
