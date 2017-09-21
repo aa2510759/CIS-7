@@ -1,0 +1,88 @@
+#include <iostream>
+#include <math.h>
+
+bool isPrime(int);
+bool validation();
+
+int main()
+
+{
+	int userRange;
+	int userGuess;
+
+	int primeCounter = 0;
+	bool valid = false;
+	do
+	{
+		std::cout << "Enter the range of prime numbers.\n";
+		std::cin >> userRange;
+
+		valid = validation();
+	} while (!valid);
+
+
+	do
+	{
+		std::cout << "Enter the amount of prime numbers within the range: \n";
+		std::cin >> userGuess;
+
+		valid = validation();
+	} while (!valid);
+
+	for (int i = 1; i < userRange + 1; i++)
+	{
+		if (isPrime(i))
+			primeCounter += 1;
+	}
+
+	std::cout << "Prime number count: " << primeCounter << std::endl;
+
+	if (primeCounter == userGuess)
+		std::cout << "Your guess was correct.\n";
+	else
+		std::cout << "Your guess was incorrect.\n";
+
+	std::cin.ignore();
+	std::cin.get();
+	return 0;
+}
+
+bool validation()
+{
+	if (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore(256, '\n');
+		std::cout << "Data type mismatch occured. \n";
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+bool isPrime(int num)
+{
+	if (num <= 1)
+		return false;
+	else if (num == 2)
+		return true;
+	else if (num % 2 == 0)
+		return false;
+	else
+	{
+		bool prime = true;
+		int divisor = 3;
+		double num_d = static_cast<double>(num);
+		int upperLimit = static_cast<int>(sqrt(num_d) + 1);
+
+		while (divisor <= upperLimit)
+		{
+			if (num % divisor == 0)
+				prime = false;
+			divisor += 2;
+		}
+		return prime;
+	}
+}
