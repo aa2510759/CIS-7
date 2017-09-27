@@ -19,6 +19,17 @@ k(2k-1)+(4(k+1)-3) =? (k+1)(2(k+1)-1)
 
 - [ ] Prove that for any positive integer number n, n^3 + 2n is divisible by 3	
 
+Base case: 
+n = 1
+
+divisble by 3 =? (1)^3 + 2(1)
+divisble by 3  =? 1 + 2
+divisble by 3 =? 3
+
+Assume n = k+1 to get next case
+
+(k+1)^3 + 2(k+1)
+(k+1)(k+1)(k+1) +2(k+1)
 
 
 
