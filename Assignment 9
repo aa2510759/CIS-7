@@ -1,24 +1,25 @@
 - [ ] 2.2 Exercise 3:  Prove by induction that 1 + 5 + 9 + ... + (4n-3) = n(2n-1)
 
+Base case:
 n = 1
 (4(1)-3) =? (1)(2(1)-1)
 1 =? (1)(1)
 1 = 1 
+1 + 5 + 9 + ... + (4n-3) = n(2n-1)
 
-
-
-Assume 1 + 5 + 9 + ... + (4n-3) = n(2n-1), n = k+1
-
+Assume n = k+1 to get next case
+plug in k + 1
+[1 + 5 + 9 + ... + (4(k+1)-3)] +(4(k+1)-3) = (k+1)(2(k+1)-1)
+replace [1 + 5 + 9 + ... + (4(k+1)-3)]  with k(2k-1) from base case
 
 k(2k-1)+(4(k+1)-3) =? (k+1)(2(k+1)-1)
 2k^2 - k + (4k+4-3) =? (k+1)(2k+1)
 2k^2 - k + (4k + 1) = ? 2k^2 + k + 2k + 1
-2k^2 + 3 + 1 = 2k^2 + 3k + 1 proof by induction
-
-
-
+2k^2 + 3k + 1 = 2k^2 + 3k + 1  proof by induction
 
 - [ ] Prove that for any positive integer number n, n^3 + 2n is divisible by 3	
+
+
 
 
 
