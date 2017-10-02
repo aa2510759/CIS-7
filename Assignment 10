@@ -1,0 +1,27 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int num;
+    int answer;
+  
+    cout << "Enter a number:";
+    cin >> num;
+
+cout << "The prime factors are: ";
+
+for (int i = 2; i <= num; i++)
+{
+ while(num % i == 0)
+ {
+   num /= i;
+   answer += i;
+   cout << i << " ";
+ }
+}
+
+    return 0;
+}
+
