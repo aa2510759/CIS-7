@@ -1,0 +1,67 @@
+#include <iostream>
+
+bool validation();
+
+int main()
+
+{
+	int first, second, gcd;
+	bool valid = false;
+
+	do
+	{
+		std::cout << "Enter first number:\n";
+		std::cin >> first;
+
+		valid = validation();
+
+		if (first < 0)
+		{
+			std::cout << "Enter only a positive integer.\n\n";
+			valid = false;
+		}
+	} while (!valid);
+
+	do
+	{
+		std::cout << "Enter the second number:\n";
+		std::cin >> second;
+
+		valid = validation();
+
+		if (first < 0)
+		{
+			std::cout << "Enter only a positive integer.\n\n";
+			valid = false;
+		}
+		
+	} while (!valid);
+
+	for (int i = 1; i <= first && i <= second; i++)
+	{
+		if (first % i == 0 && second % i == 0)
+		{
+			gcd = i;
+		}
+	}
+
+	std::cout << "GCD = " << gcd << std::endl;
+
+	system("pause");
+	return 0;
+}
+
+bool validation()
+{
+	if (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore(256, '\n');
+		std::cout << "Data type mismatch occured. \n\n";
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
