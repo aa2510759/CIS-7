@@ -1,0 +1,114 @@
+#include <iostream>
+
+bool validation();
+
+int main()
+
+{
+	int first, second;
+	int gcd = 1;
+	int choice;
+	bool valid = false;
+    
+	do
+	{
+		std::cout << "Enter first number:\n";
+		std::cin >> first;
+
+		valid = validation();
+
+		if (first < 0)
+		{
+			std::cout << "Enter only a positive integer.\n\n";
+			valid = false;
+		}
+	} while (!valid);
+
+	do
+	{
+		std::cout << "Enter the second number:\n";
+		std::cin >> second;
+
+		valid = validation();
+
+		if (first < 0)
+		{
+			std::cout << "Enter only a positive integer.\n\n";
+			valid = false;
+		}
+		
+	} while (!valid);
+	
+	do
+	{
+	    std::cout << "Pick a method to determine GCD. \n"
+		<< "(Type 1 or 2 then press enter.)\n"
+		<< "1) Euclid method\n"
+		<< "2) Other method\n";
+		
+		std::cin >> choice;
+		
+		if (choice <= 0 || choice > 2 )
+		{
+		    std::cout << "Invalid integer entered.\n";
+		    valid = false;
+		}
+	    
+	}while(!valid);
+	
+	
+	if(choice == 1)
+	{
+	    std::cout << "\"Euclid's Method.\"\n";
+	    
+	    int q, temp,temp1;
+	    
+	   	if (second > first)
+    	{
+	     temp = first;
+	     first = second;
+	     second = temp;
+    	}
+    	
+    while (second != 0) 
+    {
+        q = first/second;
+        temp1 = first % second;
+        first = second;
+        second = temp1;
+
+    }
+    std::cout << "GCD = " << first << std::endl;
+    	
+	}
+	else
+	{
+	    
+	     std::cout << "\"Other Method.\"\n";
+	    for (int i = 1; i <= first && i <= second; i++)
+	    {
+	    	if (first % i == 0 && second % i == 0)
+	    	{
+		    	gcd = i;
+	    	}
+    	}
+    	
+        std::cout << "GCD = " << gcd << std::endl;
+	}
+	return 0;
+}
+
+bool validation()
+{
+	if (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore(256, '\n');
+		std::cout << "Data type mismatch occured. \n\n";
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
