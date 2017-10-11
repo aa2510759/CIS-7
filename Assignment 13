@@ -13,3 +13,84 @@ Move disk 1 to Tower C
 - [ ] After each move, wait for user input and clear the screen
 - [ ] Upload your assignment to GitHub
 - [ ] Email james.wilson@rccd.edu with the url to the source code on GitHub	
+#include <iostream>
+#include <math.h>
+#include <stack>
+#include <vector>
+
+bool validation();
+
+void prompt();
+
+int main()
+{
+	std::vector <int> towerA;
+	std::vector <int> towerB;
+	std::vector <int> towerC;
+
+	int disks = 0;
+	int numOfSteps = 0;
+	bool valid = false;
+
+	do 
+	{
+		std::cout << "Enter the number of discs: \n";
+		std::cin >> disks;
+
+		valid = validation();
+		if (disks < 1 )
+		{
+			valid = false;
+			std::cout << "Enter a positive integer.\n";
+		}		
+	} while (!valid);
+
+	numOfSteps = pow(2, disks) - 1;
+
+	std::cout << "Number of steps: " << numOfSteps << std::endl;
+	
+	for (int i = disks;i == 1; i--)
+	{
+		towerA.push(i);
+	}
+	
+	std::vector <int> diskVector;
+	for (int i = 0; i < disks; i++)
+	{
+		diskVector.at(i) = towerA.emplace
+	}
+
+	while (towerB.size() != disks)
+	{
+
+		
+		prompt();
+	}
+
+	prompt();
+
+	return 0;
+}
+
+bool validation()
+{
+	if (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore(256, '\n');
+		std::cout << "Data type mismatch occured. \n\n";
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+void prompt()
+{
+	std::cout << "Press enter to continue.\n";
+	std::cin.ignore();
+	std::cin.ignore();
+	system("cls");
+}
