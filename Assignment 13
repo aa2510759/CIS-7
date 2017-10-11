@@ -1,96 +1,142 @@
 
-- [ ] Write a program that asks the user for 1 integer indicating the number of disks to use.  
-Then have the program solve the tower of hanoi problem recursively.
-- [ ] Have the program print out each move (for example: "Move disk from tower A to tower C")
-- [ ] Next have the program print out a visual representation of each tower in between moves. 
-For instance, after the first move, the console could show:
-```
-Tower A: -,2,3
-Tower B: -,-,-
-Tower C: -,-,1
-Move disk 1 to Tower C
-```
-- [ ] After each move, wait for user input and clear the screen
-- [ ] Upload your assignment to GitHub
-- [ ] Email james.wilson@rccd.edu with the url to the source code on GitHub	
+//-[] Write a program that asks the user for 1 integer indicating the number of disks to use.
+//Then have the program solve the tower of hanoi problem recursively.
+//- [] Have the program print out each move(for example: "Move disk from tower A to tower C")
+//- [] Next have the program print out a visual representation of each tower in between moves.
+//For instance, after the first move, the console could show :
+//```
+//Tower A : -, 2, 3
+//Tower B : -, -, -
+//Tower C : -, -, 1
+//Move disk 1 to Tower C
+//```
+//- [] After each move, wait for user input and clear the screen
+//- [] Upload your assignment to GitHub
+//- [] Email james.wilson@rccd.edu with the url to the source code on GitHub
+
+//#include <iostream>
+//#include <math.h>
+//#include <stack>
+//#include <vector>
+//
+//bool validation();
+//
+//void prompt();
+//
+//void hanoi(int, std::stack<int> , std::stack <int> , std::stack <int> );
+//
+//int main()
+//{
+//	std::stack <int> towerA;
+//	std::stack <int>  towerB;
+//	std::stack <int>  towerC;
+//
+//	int disks = 0;
+//	int numOfSteps = 0;
+//	bool valid = false;
+//
+//	do
+//	{
+//		std::cout << "Enter the number of discs: \n";
+//		std::cin >> disks;
+//
+//		valid = validation();
+//		if (disks < 1)
+//		{
+//			valid = false;
+//			std::cout << "Enter a positive integer.\n";
+//		}
+//	} while (!valid);
+//
+//	numOfSteps = pow(2, disks) - 1;
+//
+//	std::cout << "Number of steps: " << numOfSteps << std::endl << std::endl;
+//
+//	for (int i = disks; i >= 1; i--)
+//	{
+//		towerA.push(i);
+//	}
+//
+//	
+//	hanoi(disks, towerA, towerB, towerC);
+//		
+//		
+//	prompt();
+//
+//	return 0;
+//}
+//
+//bool validation()
+//{
+//	if (std::cin.fail())
+//	{
+//		std::cin.clear();
+//		std::cin.ignore(256, '\n');
+//		std::cout << "Data type mismatch occured. \n\n";
+//		return false;
+//	}
+//	else
+//	{
+//		return true;
+//	}
+//}
+//
+//void prompt()
+//{
+//	std::cout << "Press enter to continue.\n";
+//	std::cin.ignore();
+//	std::cin.ignore();
+//	system("cls");
+//}
+//
+//void hanoi(int disk, std::stack <int> start, std::stack <int>  end, std::stack <int>  spare)
+//{
+//	if (disk == 1)
+//
+//		std::cout << "Move disk 1 from tower A to tower B";
+//	}
+//
+//	for (int i = 0; i < disk; i++)
+//	{
+//		hanoi(disk - 1, start, spare, end);
+//		
+//		start.pop();
+//		end.push(start.top());
+//		std::cout << "Move disk " << disk << " from tower ";
+//		hanoi(disk - 1 , spare, end, start);
+//
+//		
+//	}
+//
+//
+//}
 #include <iostream>
-#include <math.h>
-#include <stack>
-#include <vector>
+using namespace std;
 
-bool validation();
-
-void prompt();
+void towers(int, char, char, char);
 
 int main()
 {
-	std::vector <int> towerA;
-	std::vector <int> towerB;
-	std::vector <int> towerC;
+	int num;
 
-	int disks = 0;
-	int numOfSteps = 0;
-	bool valid = false;
-
-	do 
-	{
-		std::cout << "Enter the number of discs: \n";
-		std::cin >> disks;
-
-		valid = validation();
-		if (disks < 1 )
-		{
-			valid = false;
-			std::cout << "Enter a positive integer.\n";
-		}		
-	} while (!valid);
-
-	numOfSteps = pow(2, disks) - 1;
-
-	std::cout << "Number of steps: " << numOfSteps << std::endl;
-	
-	for (int i = disks;i == 1; i--)
-	{
-		towerA.push(i);
-	}
-	
-	std::vector <int> diskVector;
-	for (int i = 0; i < disks; i++)
-	{
-		diskVector.at(i) = towerA.emplace
-	}
-
-	while (towerB.size() != disks)
-	{
-
-		
-		prompt();
-	}
-
-	prompt();
-
+	cout << "Enter the number of disks : ";
+	cin >> num;
+	cout << "The sequence of moves involved in the Tower of Hanoi are :n";
+	towers(num, 'A', 'C', 'B');
 	return 0;
 }
-
-bool validation()
+void towers(int num, char frompeg, char topeg, char auxpeg)
 {
-	if (std::cin.fail())
+	if (num == 1)
 	{
-		std::cin.clear();
-		std::cin.ignore(256, '\n');
-		std::cout << "Data type mismatch occured. \n\n";
-		return false;
+		cout << "n Move disk 1 from peg " << frompeg << " to peg " << topeg;
+		return;
 	}
-	else
-	{
-		return true;
-	}
-}
+	towers(num - 1, frompeg, auxpeg, topeg);
+	cout << "n Move disk " << num << " from peg " << frompeg << " to peg " << topeg;
+	towers(num - 1, auxpeg, topeg, frompeg);
 
-void prompt()
-{
-	std::cout << "Press enter to continue.\n";
-	std::cin.ignore();
-	std::cin.ignore();
-	system("cls");
+	cout << "Press enter to continue.\n";
+	cin.ignore();
+	cin.ignore();
 }
