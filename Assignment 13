@@ -1,142 +1,131 @@
-
-//-[] Write a program that asks the user for 1 integer indicating the number of disks to use.
-//Then have the program solve the tower of hanoi problem recursively.
-//- [] Have the program print out each move(for example: "Move disk from tower A to tower C")
-//- [] Next have the program print out a visual representation of each tower in between moves.
-//For instance, after the first move, the console could show :
-//```
-//Tower A : -, 2, 3
-//Tower B : -, -, -
-//Tower C : -, -, 1
-//Move disk 1 to Tower C
-//```
-//- [] After each move, wait for user input and clear the screen
-//- [] Upload your assignment to GitHub
-//- [] Email james.wilson@rccd.edu with the url to the source code on GitHub
-
-//#include <iostream>
-//#include <math.h>
-//#include <stack>
-//#include <vector>
-//
-//bool validation();
-//
-//void prompt();
-//
-//void hanoi(int, std::stack<int> , std::stack <int> , std::stack <int> );
-//
-//int main()
-//{
-//	std::stack <int> towerA;
-//	std::stack <int>  towerB;
-//	std::stack <int>  towerC;
-//
-//	int disks = 0;
-//	int numOfSteps = 0;
-//	bool valid = false;
-//
-//	do
-//	{
-//		std::cout << "Enter the number of discs: \n";
-//		std::cin >> disks;
-//
-//		valid = validation();
-//		if (disks < 1)
-//		{
-//			valid = false;
-//			std::cout << "Enter a positive integer.\n";
-//		}
-//	} while (!valid);
-//
-//	numOfSteps = pow(2, disks) - 1;
-//
-//	std::cout << "Number of steps: " << numOfSteps << std::endl << std::endl;
-//
-//	for (int i = disks; i >= 1; i--)
-//	{
-//		towerA.push(i);
-//	}
-//
-//	
-//	hanoi(disks, towerA, towerB, towerC);
-//		
-//		
-//	prompt();
-//
-//	return 0;
-//}
-//
-//bool validation()
-//{
-//	if (std::cin.fail())
-//	{
-//		std::cin.clear();
-//		std::cin.ignore(256, '\n');
-//		std::cout << "Data type mismatch occured. \n\n";
-//		return false;
-//	}
-//	else
-//	{
-//		return true;
-//	}
-//}
-//
-//void prompt()
-//{
-//	std::cout << "Press enter to continue.\n";
-//	std::cin.ignore();
-//	std::cin.ignore();
-//	system("cls");
-//}
-//
-//void hanoi(int disk, std::stack <int> start, std::stack <int>  end, std::stack <int>  spare)
-//{
-//	if (disk == 1)
-//
-//		std::cout << "Move disk 1 from tower A to tower B";
-//	}
-//
-//	for (int i = 0; i < disk; i++)
-//	{
-//		hanoi(disk - 1, start, spare, end);
-//		
-//		start.pop();
-//		end.push(start.top());
-//		std::cout << "Move disk " << disk << " from tower ";
-//		hanoi(disk - 1 , spare, end, start);
-//
-//		
-//	}
-//
-//
-//}
 #include <iostream>
+#include <string>
+#include <math.h>
+#include <vector>
+#include <list>
+#include <iterator>
+
 using namespace std;
 
-void towers(int, char, char, char);
+struct tower
+{
+	string name;
+	list <int> discs;
+};
+
+void hanoi(int, tower, tower, tower);
+void towerDisplay(tower);
 
 int main()
 {
 	int num;
+	
+	tower start;
+	start.name = "start";
+
+	tower end;
+
+	end.name = "end";
+
+	tower aux;
+	aux.name = "aux";
 
 	cout << "Enter the number of disks : ";
 	cin >> num;
-	cout << "The sequence of moves involved in the Tower of Hanoi are :n";
-	towers(num, 'A', 'C', 'B');
-	return 0;
-}
-void towers(int num, char frompeg, char topeg, char auxpeg)
-{
-	if (num == 1)
+	
+	for (int i = num; i > 0; i--)
 	{
-		cout << "n Move disk 1 from peg " << frompeg << " to peg " << topeg;
-		return;
+		start.discs.push_back(i);
 	}
-	towers(num - 1, frompeg, auxpeg, topeg);
-	cout << "n Move disk " << num << " from peg " << frompeg << " to peg " << topeg;
-	towers(num - 1, auxpeg, topeg, frompeg);
+
+	towerDisplay(start);
+	towerDisplay(end);
+	towerDisplay(aux);
 
 	cout << "Press enter to continue.\n";
 	cin.ignore();
 	cin.ignore();
+	system("cls");
+
+	hanoi(num, start, end, aux);
+	return 0;
+}
+void hanoi(int num, tower from, tower to, tower aux)
+{
+	bool valid = false;
+
+	if (num == 1)
+	{
+		
+		cout << "Move disk " << num << " from tower " << from.name << " to tower " << to.name << endl;
+
+		if (from.discs.empty())
+		{
+			valid = false;
+		}
+		else
+		{
+			valid = true;
+		}
+		if (valid)
+		{
+			to.discs.push_front(from.discs.front());
+			from.discs.pop_front();
+		}
+
+		towerDisplay(from);
+		towerDisplay(to);
+		towerDisplay(aux);
+
+		cout << "Press enter to continue.\n";
+		cin.ignore();
+		cin.ignore();
+		system("cls");
+	}
+	else
+	{
+		hanoi(num - 1, from, to, aux);
+	
+		cout << "Move disk " << num << " from tower " << from.name << " to tower " << to.name << endl;
+
+		if (from.discs.empty())
+		{
+			valid = false;
+		}
+		else
+		{
+			valid = true;
+		}
+		if (valid)
+		{
+			to.discs.push_back(from.discs.back());
+			from.discs.pop_back();
+		}
+
+		towerDisplay(from);
+		towerDisplay(to);
+		towerDisplay(aux);
+
+		
+		cout << "Press enter to continue.\n";
+		cin.ignore();
+		cin.ignore();
+
+		system("cls");
+
+		hanoi(num - 1, aux, from, to);
+	
+	}	
+}
+
+void towerDisplay(tower current)
+{
+
+	cout << "Tower " << current.name << ": ";
+	for (list<int>::const_iterator iterator = current.discs.begin(), end = current.discs.end(); iterator != end; ++iterator)
+	{
+		if (current.discs.size())
+		cout << *iterator <<  " ";	
+	}
+	cout << endl << endl;
 }
