@@ -1,0 +1,233 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+void menu();
+void prompt();
+void validation();
+bool repeatChecker(std::string, std::vector <std::string>);
+
+void setDisplay(std::vector <std::string>);
+void difference(std::vector <std::string>, std::vector <std::string>);
+void powerset(std::vector <std::string>, std::vector <std::string>);
+void cross(std::vector <std::string>, std::vector <std::string>);
+void intersect(std::vector <std::string>, std::vector <std::string>);
+void combined(std::vector <std::string>, std::vector <std::string>);
+
+int main()
+{
+	int choice;
+	bool valid = false;
+
+	std::string stringA, stringB;
+	std::vector <std::string> setA, setB;
+	do
+	{
+		system("cls");
+		menu();
+		std::cin >> choice;
+		validation();
+		
+		if (choice < 1 || choice > 11)
+		{
+			std::cout << "Invalid input\n";
+			std::cin.ignore();
+		}
+		prompt();
+		
+		switch (choice)
+		{
+		case 1:
+			std::cout << "Enter a string for setA:\n";
+			std::getline(std::cin, stringA);
+			valid = repeatChecker(stringA, setA);
+			if (valid)
+			{
+				std::cout << "No repeats allowed.\n";
+				std::cin.ignore();
+			}
+			else
+			{
+				setA.push_back(stringA);
+			}
+			break;
+		case 2:
+			std::cout << "Enter a string for setB:\n";
+			std::getline(std::cin, stringB);
+			valid = repeatChecker(stringB, setB);
+			if (valid)
+			{
+				std::cout << "No repeats allowed.\n";
+				std::cin.ignore();
+			}
+			else
+			{
+				setB.push_back(stringB);
+			}
+			break;
+		case 3:
+			intersect(setA, setB);
+			prompt();
+			break;
+		case 4:
+			combined(setA, setB);
+			prompt();
+			break;
+		case 5:
+			difference(setA, setB);
+			prompt();
+			break;
+		case 6:
+			difference(setB, setA);
+			prompt();
+			break;
+		case 7:
+			powerset(setA, setB);
+			prompt();
+			break;
+		case 8:
+			cross(setA, setB);
+			prompt();
+			break;
+		case 9:
+			setDisplay(setA);
+			prompt();
+			break;
+		case 10:
+			setDisplay(setB);
+			prompt();
+			break;
+		}
+
+	}
+	while (choice != 11);
+
+
+}
+
+void setDisplay(std::vector <std::string> set)
+{
+	std::cout << "Contents of set:\n";
+	for (int i = 0; i < set.size(); i++)
+	{
+		std::cout << (i + 1) << ") " << set[i] << std::endl;
+	}
+}
+
+void difference(std::vector <std::string> A, std::vector <std::string> B)
+{
+	int counter = 0;
+	std::vector <std::string> AB;
+	for (int i = 0; i < A.size(); i++)
+	{
+		for (int j = 0; j < B.size(); j++)
+		{
+			if (A[i] == B[j])
+			{
+				B[j].erase();
+			}
+		}
+	}
+
+	AB.reserve(A.size() + B.size()); 
+	AB.insert(AB.end(), A.begin(), A.end());
+	AB.insert(AB.end(), B.begin(), B.end());
+
+	for (int i = 0; i < AB.size(); i++)
+	{
+		std::cout << (i+1) << ") " << AB[i] << std::endl;
+	}
+}
+
+void powerset(std::vector <std::string> A, std::vector <std::string> B)
+{
+}
+
+void cross(std::vector <std::string> A, std::vector <std::string> B)
+{
+	int counter = 0;
+	std::cout << "Cross of sets:\n";
+	for (int i = 0; i < A.size(); i++)
+	{
+		for (int j = 0; j < B.size(); j++)
+		{
+			counter++;
+			std::cout << counter << ") " << A[i] << ", " << B[j] << std::endl;
+		}
+	}
+}
+
+void intersect(std::vector <std::string> A, std::vector <std::string> B)
+{
+	int counter = 0;
+	std::cout << "Intersect of A and B:\n";
+	for (int i = 0; i < A.size(); i++)
+	{
+		for (int j = 0; j < B.size(); j++)
+		{
+			if (A[i] == B[j])
+			{
+				counter++;
+				std::cout << counter << ") " << B[j] << std::endl;
+			}
+			
+		}
+	}
+}
+
+void combined(std::vector <std::string> A, std::vector <std::string>B)
+{
+	std::cout << "Contents of A and B:\n";
+	for (int i = 0; i < A.size(); i++)
+	{
+		std::cout << (i + 1) << ") " << A[i] << std::endl;
+	}
+	for (int i = 0; i < B.size(); i++)
+	{
+		std::cout << (A.size() + i + 1) << ") " << B[i] << std::endl;
+	}
+
+}
+
+void menu()
+{
+	std::cout << "(No repeats allowed in a set)\n"
+		<< "1) Add a value to A : Allow the user to add a string value to A\n"
+		<< "2) Add a value to B : Allow the user to add a string value to B\n"
+		<< "3) A interset B : Prints out the contents of A interset B\n"
+		<< "4) A union B : Prints out the contents of A union B\n"
+		<< "5) A diff B : Prints out the contents of A - B\n"
+		<< "6) B diff A : Prints out the contents of B - A\n"
+		<< "7) Powersets : Prints out the powersets of A and B\n"
+		<< "8) Cross set : print out the cross set of A and B\n"
+		<< "9) Print out set A\n"
+		<< "10) Print out set B\n"
+		<< "11) Exit\n";
+}
+
+void prompt()
+{
+	std::cout << "Press enter to continue...\n";
+	std::cin.ignore();
+	system("cls");
+}
+
+void validation()
+{
+	if (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore(256, '\n');
+		std::cout << "Data type mismatch occured. \n\n";
+	}
+}
+bool repeatChecker(std::string str, std::vector <std::string> set)
+{
+	for (int i = 0; i < set.size(); i++)
+	{
+		if (str == set[i])
+			return true;
+	}
+	return false;
+
+}
