@@ -1,6 +1,9 @@
 #include <iostream>
+#include <set>
+#include <iterator>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 void menu();
 void prompt();
@@ -13,6 +16,8 @@ void powerset(std::vector <std::string>, std::vector <std::string>);
 void cross(std::vector <std::string>, std::vector <std::string>);
 void intersect(std::vector <std::string>, std::vector <std::string>);
 void combined(std::vector <std::string>, std::vector <std::string>);
+
+std::vector<std::vector<std::string>> getAllSubsets(std::vector<std::string>);
 
 int main()
 {
@@ -139,10 +144,6 @@ void difference(std::vector <std::string> A, std::vector <std::string> B)
 	}
 }
 
-void powerset(std::vector <std::string> A, std::vector <std::string> B)
-{
-}
-
 void cross(std::vector <std::string> A, std::vector <std::string> B)
 {
 	int counter = 0;
@@ -229,5 +230,59 @@ bool repeatChecker(std::string str, std::vector <std::string> set)
 			return true;
 	}
 	return false;
+
+}
+
+std::vector<std::vector<std::string>> getAllSubsets(std::vector<std::string> set)
+{
+	std::vector< std::vector<std::string> > subset;
+	std::vector<std::string> empty;
+	subset.push_back(empty);
+
+	for (int i = 0; i < set.size(); i++)
+	{
+		std::vector<std::vector<std::string> > subsetTemp = subset;
+
+		for (int j = 0; j < subsetTemp.size(); j++)
+			subsetTemp[j].push_back(set[i]);
+
+		for (int j = 0; j < subsetTemp.size(); j++)
+			subset.push_back(subsetTemp[j]);
+	}
+	return subset;
+}
+
+
+void powerset(std::vector <std::string> A, std::vector <std::string> B)
+{
+	std::cout << "Power set of set A:\n";
+	
+	std::vector <std::vector<std::string>> myVectorA = getAllSubsets(A);
+	
+	std::vector <std::vector<std::string>> myVectorB = getAllSubsets(B);
+	for (int i = 0; i < myVectorA.size(); i++)
+	{
+		std::cout << "{ ";
+		for (int j = 0; j < myVectorA[i].size(); j++)
+		{
+			std::cout << myVectorA[i][j] << ", ";
+		}
+	
+		std::cout << " }\n";
+	}
+
+
+	std::cout << "Power set of set B:\n";
+
+	for (int i = 0; i < myVectorB.size(); i++)
+	{
+		std::cout << "{ ";
+		for (int j = 0; j < myVectorB[i].size(); j++)
+		{
+			std::cout << myVectorB[i][j] << ", ";
+		}
+
+		std::cout << " }\n";
+	}
 
 }
