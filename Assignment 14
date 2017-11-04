@@ -1,0 +1,93 @@
+#include <iostream>
+#include <string>
+
+bool validation();
+void prompt();
+int factorial(int);
+int Fibonacci(int);
+
+//-[] Write a program that will take an integer input and then allow the user
+//to either calculate the factorial of that number or get the fibonacci number represented by that number
+//- [] Both functions in the above step should be recursive
+//- [] For the factorial function, simulate a call stack by outputting what
+//the contents of the real call stack might look like on each recursive call of the factorial function
+
+int main()
+{
+	int userInt, choice;
+	bool valid;
+	do
+	{
+		std::cout << "Enter an int:\n";
+		std::cin >> userInt;
+		valid = validation();
+		prompt();
+		if (userInt < 1)
+			valid = false;
+	} while (!valid);
+
+	do
+	{
+		system("cls");
+		std::cout << "1) Show Factorial(call stack too)\n"
+			<< "2) Show Fibonacii\n";
+		std::cin >> choice;
+		valid = validation();
+		prompt();
+		if (choice < 1 || choice > 2)
+			valid = false;
+
+	} while (!valid);
+
+	if (choice == 1)
+	{
+		std::cout << "Factorial: \n";
+		std::cout << factorial(userInt) << std::endl;
+		prompt();
+
+	}
+	else if (choice == 2)
+	{
+		std::cout << "Fibonaccii:\n";
+		std::cout << Fibonacci(userInt) << std::endl;
+		prompt();
+
+	}
+}
+
+int factorial(int number)
+{
+	std::cout << "Factorial function called\n";
+	int temp;
+	if (number <= 1) return 1;
+
+	temp = number * factorial(number - 1);
+	return temp;
+}
+
+
+int Fibonacci(int n) 
+{
+	if (n == 0 || n == 1)  return n;
+	else
+		return Fibonacci(n - 1) + Fibonacci(n - 2);
+}
+bool validation()
+{ 
+	if (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore(256, '\n');
+		std::cout << "Data type mismatch occured. \n\n";
+		return false;
+	}
+	else
+	return true;
+}
+
+void prompt()
+{
+	std::cout << "Press enter to continue...\n";
+	std::cin.ignore();
+	system("cls");
+}
