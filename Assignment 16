@@ -1,0 +1,24 @@
+	- Find two nodes that are not adjacent
+	- Find a node adjacent to itself
+	- Find a loop
+	- Find two parallel edges
+	- Find the degree of node 3
+	- Find a path of length 5
+	- Find a cycle
+	- Is this graph complete?
+	- Is this graph connected?
+
+1) node 3 and 4
+2) node 4
+3) node 5
+4) node 3 and 4
+5) 3
+6) node 1 -> node 2
+node 2 -> node 1
+node 1 -> node 3
+node 3 -> node 4
+node 4 -> node 5
+7) node 4 -> node 3
+node 3 -> node 3
+8) yes
+9) no
