@@ -1,0 +1,162 @@
+//Write a program that will allow a user to create a graph(no visuals needed)
+//- [] Initially the graph will contain 0 verticies and 0 edges    XXXXXXXXXXXXX
+//- [] Allow the user to add vertices
+//- [] Allow the user to add edges
+
+#include <iostream>
+#include <vector>
+
+bool validation();
+void prompt();
+void menu();
+
+
+struct vertex
+{
+
+	std::vector <int> edgesV;
+};
+
+struct edge
+{
+	vertex node1;
+	vertex node2;
+};
+
+void info(std::vector <vertex*>, std::vector <edge*>);
+
+int main()
+{
+	std::vector <vertex*> vertices;
+	std::vector <edge*> edges;
+
+	bool valid;
+	int choice;
+	do
+	{
+		do
+		{
+			menu();
+			std::cin >> choice;
+			valid = validation();
+			if (choice < 1 || choice > 4)
+			{
+				valid = false;
+			}
+			prompt();
+		} while (!valid);
+
+	
+		switch (choice)
+		{
+
+		case 1:
+			vertices.push_back(new vertex);
+			std::cout << "New vertex added\n";
+			prompt();
+
+			break;
+		case 2:
+			int num1, num2;
+			do
+			{
+				std::cout << "Pick 2 vertices:\n";
+				for (int i = 0; i < vertices.size(); i++)
+				{
+					std::cout << "vertex " << (i+1) << std::endl;
+				}
+				std::cin >> num1;
+				prompt();
+				valid = validation();
+				std::cin >> num2;
+				prompt();
+				valid = validation();
+			} while (!valid);
+
+			edges.push_back(new edge);
+			edges[(edges.size() - 1)]->node1 = *vertices[(num1 - 1)];
+			prompt();
+			edges[(edges.size() - 1)]->node1 = *vertices[(num2 - 1)];
+			prompt();
+			vertices[(num1 - 1)]->edgesV.push_back((edges.size() - 1));
+			prompt();
+			vertices[(num2 - 1)]->edgesV.push_back((edges.size() - 1));
+			prompt();
+			info(vertices, edges);
+			prompt();
+			break;
+		case 3:
+			info(vertices, edges);
+			prompt();
+			break;
+		case 4:
+			break;
+		}
+	}
+	while (choice != 4);
+}
+
+void menu()
+{
+	std::cout << "Graph Theory Simulator\n"
+		<< "1) Add vertex to graph\n"
+		<< "2) Add edge to graph\n"
+		<< "3) Check graph status\n"
+		<< "4) Exit\n";
+	
+}
+bool validation()
+{
+
+	if (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore(256, '\n');
+		std::cout << "Data type mismatch occured. \n\n";
+		return false;
+	}
+	else
+		return true;;
+}
+
+void prompt()
+{
+	std::cout << "Press enter to continue...\n";
+	std::cin.ignore();
+	system("cls");
+}
+
+
+void info(std::vector <vertex*> nod, std::vector <edge*> edg)
+{
+	//At any given time, the program should inform the user of the following information :
+	//-[] Vertex with the highest degree 
+	//- [] List of isolated vertices  XXXXXXXXXXX
+	//- [] Number of loops
+	//- [] Is the graph connected ?
+	//-[] Is the graph complete ?
+
+	int highestDegree = 0;
+	std::vector <int> isolated;
+	int numberLoops = 0;
+
+	for (int i = 0; i < nod.size(); i++)
+	{
+		if (nod[i]->edgesV.size() > highestDegree)
+		{
+			highestDegree = (i + 1);
+		}
+		if (nod[i]->edgesV.empty())
+		{
+			isolated.push_back(i);
+		}
+	}
+	std::cout << "Vertex with the highest degree: " << highestDegree << std::endl;
+
+	std::cout << "Isolated vertices: ";
+
+	for (int i = 0; i < isolated.size(); i++)
+	{
+		std::cout << (isolated[i] + 1) << std::endl;
+	}
+}
