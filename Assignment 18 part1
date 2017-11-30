@@ -1,0 +1,30 @@
+1) g(a) = (1,2)
+   g(b) = (1,3)
+   g(c) = (2,3)
+   g(d) = (2,2)
+
+2) a) yes
+   b) yes
+   c) no
+   d) yes
+   e) yes
+   f) no
+   g) yes
+
+9) a) Everyone in a department knows someone in the same department.
+   This means that nobody from either department know eachother.
+   b) Carl and Fletcher don't know eachother, SinYan is only aquainted with Carl.
+   c) 2
+
+13) b, Because no node has a degree of 0
+
+30) 6
+
+49) The graph consists of n disconnected nodes with a loop at each node
+
+50) The graph consists of n disconnected nodes all isolated nodes
+
+51) The n X n matrix with 0's down the main diagonal and 1's elswhere
+
+71) The matrix for G' will have 1s where A had 0s and 0s where A had 1s except for diagonal elements, which remain 0s.
+  
