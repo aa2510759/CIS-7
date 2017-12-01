@@ -227,26 +227,18 @@ int main()
 	}
 	else if (choice == 3)
 	{
-
+		tree->insert();
 	}
 	else if (choice == 4)
 	{
-
-	}
-	tree->insert(10);
-	tree->insert(6);
-	tree->insert(14);
-	tree->insert(5);
-	tree->insert(8);
-	tree->insert(11);
-	tree->insert(18);
-
-	cout << "Preorder:\n";
+		cout << "Preorder:\n";
 	tree->preorder_print();
 	cout << "Inorder:\n";
 	tree->inorder_print();
 	cout << "Postorder:\n";
 	tree->postorder_print();
+	}
+	
 
 	delete tree;
 
