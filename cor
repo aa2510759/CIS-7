@@ -1,0 +1,169 @@
+#include <iostream>
+#include<cstdlib>
+#include<ctime>
+void c();
+
+struct cor
+{
+	int x;
+	int y;
+	int health;
+};
+
+void corMap(cor);
+cor coordinateValidation(cor);
+void menu(cor);
+int main()
+{
+	cor myCor;
+	myCor.x = 0;
+	myCor.y = 0;
+	myCor.health = 10;
+	std::srand(std::time(0));  // needed once per program run
+
+	int enemiesX[40];
+	int enemiesY[40];
+
+	for (int i = 0; i < 39; i++)
+	{
+		enemiesX[i] = std::rand() % 10;
+		enemiesY[i] = std::rand() % 10;
+	}
+
+	cor win;
+
+	win.x = std::rand() % 10;
+	win.y = std::rand() % 10;
+
+	bool maaapB[10][10];
+
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			maaapB[i][j] = false;
+		}
+	}
+
+	corMap(myCor);
+
+	for (int i = 0; i < 39; i++)
+	{
+		std::cout << "(" << enemiesX[i] << "," << enemiesY[i] << ")\n";
+	}
+	std::cout << "\nWinning spot: (" << win.x << "," << win.y << ")\n";
+	c();
+
+	int choice = 0;
+
+	while (choice != 5)
+	{
+		std::cout << "\tStormy Monday\n\n\n\n";
+	
+		menu(myCor);
+		std::cin >> choice;
+		c();
+
+		switch (choice)
+		{
+		case 1: //up
+			myCor.x--;
+			myCor = coordinateValidation(myCor);
+			if (myCor.x == win.x && myCor.y == win.y)
+			{
+				std::cout << "You win\n";
+				choice = 5;
+			}
+			break;
+		case 2: // down
+			myCor.x++;
+			myCor = coordinateValidation(myCor);
+			break;
+		case 3: // left
+			myCor.y--;
+			myCor = coordinateValidation(myCor);
+			break;
+		case 4: // right
+			myCor.y++;
+			myCor = coordinateValidation(myCor);
+			break;
+		case 5:
+			std::cout << "Game over\n";
+			c();
+			break;
+		}
+		
+	}
+
+}
+
+void menu(cor co)
+{
+
+	std::cout << "Health = " << co.health<< std::endl;
+	std::cout << "Coordinates (" << co.x << "," << co.y << ")\n";
+	std::cout << "1) Move up\n";
+	std::cout << "2) Move down\n";
+	std::cout << "3) Move left\n";
+	std::cout << "4) Move right\n";
+	std::cout << "5) Exit\n";
+}
+
+void c()
+{
+	std::cout << "Press enter to continue...\n";
+	std::cin.ignore();
+
+}
+
+cor coordinateValidation(cor co)
+{
+	if (co.x < 0 )
+	{
+		co.x++;
+		std::cout << "Out of bounds\n";
+		return co;
+	}
+	else if (co.x > 10)
+	{
+		co.x--;
+		std::cout << "Out of bounds\n";
+		return co;
+	}
+	else if (co.y > 10)
+	{
+		co.y--;
+		std::cout << "Out of bounds\n";
+		return co;
+	}
+	else if (co.y < 0 )
+	{
+		co.y++;
+		std::cout << "Out of bounds\n";
+		return co;
+	}
+	else
+	{
+		return co;
+	}
+}
+
+void corMap(cor co)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (co.x == i && co.y == j)
+			{
+				std::cout << "(U R HERE)";
+			}
+			else
+			{
+				std::cout << "(" << i << "," << j << ") ";
+			}
+			
+		}
+		std::cout << "\n";
+	}
+}
